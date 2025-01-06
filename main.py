@@ -8,7 +8,6 @@ import zipfile
 from io import BytesIO
 import os
 
-os.mkdir("./Captions")
 def extract_youtube_video_id(url):
     """
     Extracts the video ID from a YouTube URL.
@@ -44,7 +43,7 @@ def clean_string(text):
     return ''.join(filter(lambda x: x in printable, text))
 
 def WritePlain(videodict):
-    with open("PlainTranscript.txt", "w+") as f:
+    with open("./PlainTranscript.txt", "w+") as f:
         for x in videodict:
             f.write(clean_string(x["text"])+"\n")
 
@@ -97,13 +96,13 @@ def ConvertSRTTime(time):
 def FormatToSRT(videodict):
     print("started SRT")
     if(text_timed):
-        f = open("Captions/SRT_Transcript.txt", "w+")
+        f = open("./SRT_Transcript.txt", "w+")
         for x in videodict:
             f.write(ConvertSRTTime(x["start"])+" --> "+ConvertSRTTime(x["start"]+x["duration"])+" "+clean_string(x["text"])+"\n")
         f.close()
         
     if(srtfile):
-        with open("SRT_Transcript.srt", "w+") as f:
+        with open("./SRT_Transcript.srt", "w+") as f:
             for x in videodict:
                 f.write(ConvertSRTTime(x["start"])+" --> "+ConvertSRTTime(x["start"]+x["duration"])+" "+clean_string(x["text"])+"\n")
 
@@ -113,9 +112,9 @@ def AddtoDict():
     if(plaintxt):
         file_dict.append("./PlainTranscript.txt")
     if(srtfile):
-        file_dict.append("Captions/SRT_Transcript.srt")
+        file_dict.append("./SRT_Transcript.srt")
     if(text_timed):
-        file_dict.append("Captions/SRT_Transcript.txt")
+        file_dict.append("./SRT_Transcript.txt")
 
 st.header("Youtube URL")
 st.write("Desired Formats:")
