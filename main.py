@@ -108,11 +108,11 @@ file_dict = []
 
 def AddtoDict():
     if(plaintxt):
-        file_dict.append("PlainTranscript.txt")
+        file_dict.append("/PlainTranscript.txt")
     if(srtfile):
-        file_dict.append("SRT_Transcript.srt")
+        file_dict.append("/SRT_Transcript.srt")
     if(text_timed):
-        file_dict.append("SRT_Transcript.txt")
+        file_dict.append("/SRT_Transcript.txt")
 
 st.header("Youtube URL")
 st.write("Desired Formats:")
