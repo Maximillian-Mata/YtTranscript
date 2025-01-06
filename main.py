@@ -6,8 +6,9 @@ import re
 from urllib.parse import urlparse, parse_qs
 import zipfile
 from io import BytesIO
+import os
 
-
+os.mkdir("./Captions")
 def extract_youtube_video_id(url):
     """
     Extracts the video ID from a YouTube URL.
@@ -110,7 +111,7 @@ file_dict = []
 
 def AddtoDict():
     if(plaintxt):
-        file_dict.append("/PlainTranscript.txt")
+        file_dict.append("./PlainTranscript.txt")
     if(srtfile):
         file_dict.append("Captions/SRT_Transcript.srt")
     if(text_timed):
