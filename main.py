@@ -96,11 +96,13 @@ def ConvertSRTTime(time):
 def FormatToSRT(videodict):
     print("started SRT")
     if(text_timed):
-        with open("SRT_Transcript.srt", "w+") as f:
-            for x in videodict:
-                f.write(ConvertSRTTime(x["start"])+" --> "+ConvertSRTTime(x["start"]+x["duration"])+" "+clean_string(x["text"])+"\n")
+        f = open("Captions/SRT_Transcript.txt", "w+")
+        for x in videodict:
+            f.write(ConvertSRTTime(x["start"])+" --> "+ConvertSRTTime(x["start"]+x["duration"])+" "+clean_string(x["text"])+"\n")
+        f.close()
+        
     if(srtfile):
-        with open("SRT_Transcript.txt", "w+") as f:
+        with open("SRT_Transcript.srt", "w+") as f:
             for x in videodict:
                 f.write(ConvertSRTTime(x["start"])+" --> "+ConvertSRTTime(x["start"]+x["duration"])+" "+clean_string(x["text"])+"\n")
 
@@ -110,9 +112,9 @@ def AddtoDict():
     if(plaintxt):
         file_dict.append("/PlainTranscript.txt")
     if(srtfile):
-        file_dict.append("/SRT_Transcript.srt")
+        file_dict.append("Captions/SRT_Transcript.srt")
     if(text_timed):
-        file_dict.append("/SRT_Transcript.txt")
+        file_dict.append("Captions/SRT_Transcript.txt")
 
 st.header("Youtube URL")
 st.write("Desired Formats:")
