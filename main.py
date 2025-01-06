@@ -127,7 +127,7 @@ with col2:
     srtfile = st.toggle("SRT file")
 with col3:
     plaintxt = st.toggle("Plain TXT file")
-
+inline = st.toggle("Show Captions")
 url = st.text_input(label="Video url")
 go = st.button(label="Get")
 if(not srtfile and not text_timed and not plaintxt):
@@ -140,9 +140,10 @@ if go:
     if id:
         id = str(id)
         gotit = GetTranscript(id)
-        for x in gotit:
-            st.write(x)
-            st.write("Line: "+clean_string(x["text"])+"\n")
+        if inline:
+            for x in gotit:
+                st.write(x)
+                st.write("Line: "+clean_string(x["text"])+"\n")
         FormatToSRT(gotit)
         if(plaintxt):
             WritePlain(gotit)
